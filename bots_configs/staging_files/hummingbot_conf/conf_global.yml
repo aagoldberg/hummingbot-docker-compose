@@ -1,0 +1,177 @@
+#################################
+###   Global configurations   ###
+#################################
+
+# For more detailed information: https://docs.hummingbot.io
+template_version: 36
+
+# Exchange configs
+
+kraken_api_tier: Starter
+
+celo_address:
+kill_switch_enabled: false
+# The rate of performance at which you would want the bot to stop trading (-20 = 20%)
+kill_switch_rate: -100.0
+
+# What to auto-fill in the prompt after each import command (start/config)
+autofill_import:
+
+# Paper Trading
+paper_trade_exchanges:
+- binance
+- kucoin
+- ascend_ex
+- gate_io
+paper_trade_account_balance:
+telegram_enabled: false
+telegram_token:
+telegram_chat_id:
+
+# Error log sharing
+send_error_logs: true
+
+# Advanced configs: Do NOT touch unless you understand what you are changing
+instance_id: 7bb77f41b78cd728d39b21dbe1524bdf6a877035
+log_level: INFO
+debug_console: false
+strategy_report_interval: 900.0
+logger_override_whitelist:
+- hummingbot.strategy
+- conf
+key_file_path: conf/
+log_file_path: logs/
+
+# Advanced database options, currently supports SQLAlchemy's included dialects
+# Reference: https://docs.sqlalchemy.org/en/13/dialects/
+db_engine: postgresql+psycopg2
+db_host: hummingbot-docker-compose-db-1
+db_port: '5432'
+db_username: andrew
+db_password: andrew
+db_name: postgres
+
+pmm_script_enabled: false
+pmm_script_file_path:
+
+# Balance Limit Configurations
+# e.g. Setting USDT and BTC limits on Binance.
+# balance_asset_limit:
+#   binance:
+#     BTC: 0.1
+#     USDT: 1000
+balance_asset_limit:
+  probit:
+  blocktane:
+  ascend_ex:
+  coinflex_test:
+  gate_io:
+  okx:
+  kucoin:
+  k2:
+  coinflex:
+  crypto_com:
+  huobi:
+  beaxy:
+  wazirx:
+  ftx:
+  bittrex:
+  kraken:
+  altmarkets:
+  ndax_testnet:
+  probit_kr:
+  bitmart:
+  coinzoom:
+  bybit:
+  hitbtc:
+  kucoin_testnet:
+  mexc:
+  liquid:
+  ndax:
+  bitfinex:
+  binance:
+  bybit_testnet:
+  binance_us:
+  loopring:
+  digifinex:
+  coinbase_pro:
+
+# Fixed gas price (in Gwei) for Ethereum transactions
+manual_gas_price: 50.0
+
+# Gateway API Configurations
+# default host to only use localhost
+# Port need to match the final installation port for Gateway
+gateway_api_host: localhost
+gateway_api_port: '5050'
+
+# Whether to enable aggregated order and trade data collection
+anonymized_metrics_enabled: true
+# The frequency of sending the aggregated order and trade data (in minutes, e.g. enter 5 for once every 5 minutes)
+anonymized_metrics_interval_min: 15.0
+
+# Command Shortcuts
+# Define abbreviations for often used commands
+# or batch grouped commands together
+#
+command_shortcuts:
+rate_oracle_source: binance
+
+# A universal token which to display tokens values in, e.g. USD,EUR,BTC
+global_token: USD
+
+# A symbol for the global token, e.g. $, €
+global_token_symbol: $
+
+# Percentage of API rate limits (on any exchange and any end point) allocated to this bot instance.
+# Enter 50 to indicate 50%. E.g. if the API rate limit is 100 calls per second, and you allocate 50% to this setting,
+# the bot will have a maximum (limit) of 50 calls per second
+rate_limits_share_pct: 100.0
+
+# network timeout when fetching minimum order amount in the `create` command
+create_command_timeout: 10.0
+
+# network timeout for other commands (i.e. import, connect, balance, history)
+other_commands_timeout: 30.0
+
+# Background color of the top pane
+top-pane: '#000000'
+
+# Background color of the bottom pane
+bottom-pane: '#000000'
+
+# Background color of the output pane
+output-pane: '#282C2F'
+
+# Background color of the input pane
+input-pane: '#151819'
+
+# Background color of the logs pane
+logs-pane: '#151819'
+
+# Terminal primary color
+terminal-primary: '#00FFE5'
+
+# Primary label color
+primary-label: '#5FFFD7'
+
+# Secondary label color
+secondary-label: '#FFFFFF'
+
+# Success label color
+success-label: '#5FFFD7'
+
+# Warning label color
+warning-label: '#FFFF00'
+
+# Info label color
+info-label: '#5FD7FF'
+
+# Error label color
+error-label: '#FF0000'
+
+# tabulate table format style (https://github.com/astanin/python-tabulate#table-format)
+tables_format: psql
+
+# previously imported strategy
+previous_strategy:

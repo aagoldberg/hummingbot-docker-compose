@@ -1,0 +1,71 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:13
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=/run/secrets/postgresl_password
+      - POSTGRES_USER=andrew
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - db-data:/var/lib/postgresql/data/pgdata
+    secrets:
+      - postgresl_password
+  
+  bot1: 
+    image: aagberg/hummingbot_pg:latest
+    environment: 
+      - CONFIG_FILE_NAME=master_pmm_1.yml
+      - CONFIG_PASSWORD=master
+    volumes:
+      - "./bots_configs/master_files/hummingbot_conf:/conf/"
+      - "./bots_configs/master_files/hummingbot_logs:/logs/"
+      - "./bots_configs/master_files/hummingbot_data:/data/"
+      - "./bots_configs/master_files/hummingbot_pmm_scripts:/pmm_scripts/"
+      - "./bots_configs/master_files/hummingbot_scripts:/scripts/"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+    tty: true
+    stdin_open: true
+
+  bot2: 
+    image: aagberg/hummingbot_pg:latest
+    environment: 
+      - CONFIG_FILE_NAME=master_pmm_1.yml
+      - CONFIG_PASSWORD=master
+    volumes:
+      - "./bots_configs/master_files/hummingbot_conf:/conf/"
+      - "./bots_configs/master_files/hummingbot_logs:/logs/"
+      - "./bots_configs/master_files/hummingbot_data:/data/"
+      - "./bots_configs/master_files/hummingbot_pmm_scripts:/pmm_scripts/"
+      - "./bots_configs/master_files/hummingbot_scripts:/scripts/"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+    tty: true
+    stdin_open: true
+
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment: 
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com 
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"
+
+volumes:
+  db-data:
+
+secrets:
+  postgresql_password: 
+    file: postgresql_password
+  
+
+    
